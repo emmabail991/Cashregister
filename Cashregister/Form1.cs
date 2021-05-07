@@ -39,11 +39,6 @@ namespace Cashregister
         double amountPayed;
         double change;
 
-
-
-
-
-
         public Form1()
         {
             InitializeComponent();
@@ -54,31 +49,21 @@ namespace Cashregister
             PrintReceiptButton.Enabled = false;
         }
 
-
-
-
         //calculate total button 
         private void calculateTotalbutton2_Click(object sender, EventArgs e)
         {
-
 
             //click sound for calculation button press 
             SoundPlayer click = new SoundPlayer(Properties.Resources.clickSound);
             click.Play();
 
-
-
-
             // try and catch blocks user from using letters
             try
             {
-
-
                 //convert hair cut amounts to intagers 
                 baldFadeAmount = Convert.ToInt32(baldefadeInput.Text);
                 buzzCutAmount = Convert.ToInt32(BuzzcutInput.Text);
                 BowlCutAmount = Convert.ToInt32(BowlcutInput.Text);
-
 
                 //total calculations
                 subTotal = baldFadeAmount * baldFadeCost + buzzCutAmount * buzzCutCost + BowlCutAmount * BowlCutCost;
@@ -86,16 +71,12 @@ namespace Cashregister
                 taxTotal = subTotal * tax;
                 total = taxTotal + subTotal;
 
-
-
-
                 // if statment blocks user from going on without buying anyhting
                 if (total > 0)
                 {
                     //botton state 
                     calculateChangeButton.Enabled = true;
                     PrintReceiptButton.Enabled = false;
-
 
                     //sub total,tax and total display output text
                     totalOutput.Text = $"\n\n Sub total          {subTotal.ToString("c")}";
@@ -131,14 +112,9 @@ namespace Cashregister
 
         }
 
-
-
-
         //change button output
         private void calculateChangeButton_Click(object sender, EventArgs e)
         {
-
-
 
             //try and catch blocks user from using letters
             try
@@ -147,16 +123,12 @@ namespace Cashregister
                 amountPayed = Convert.ToDouble(amountpayedInput.Text);
                 change = amountPayed - total;
 
-
-
                 //if statment stops to user from going past the calculate change button without paying a price above the cost needed 
                 if (change > 0)
                 {
                     //button states
                     calculateChangeButton.Enabled = true;
                     PrintReceiptButton.Enabled = true;
-
-
 
                     //amount payed and change output text
                     changeAmountOutput.Text = $"Change               {change.ToString("c")}";
@@ -182,45 +154,33 @@ namespace Cashregister
                 changeAmountOutput.Text = "please use numbers";
             }
 
-
-
             //coin sound on button change press
             SoundPlayer coin = new SoundPlayer(Properties.Resources.coinSound);
             coin.Play();
         }
 
 
-
-
-
-
         //Receipt Print
         private void PrintReceiptButton_Click(object sender, EventArgs e)
 
         {
-
             //Printer sound on recipt button press
             SoundPlayer printer = new SoundPlayer(Properties.Resources.printerSound);
             printer.Play();
-
 
             //random number variables for receipt number
             Random rnd = new Random();
             int randomNum = rnd.Next(0, 999);
 
-
             //variables for date
             string time = System.DateTime.UtcNow.ToLocalTime().ToString("hh:mm:ss");
             string day = System.DateTime.UtcNow.ToLocalTime().ToString("yyyy-MM-dd");
 
-
             //receipt store name output text
             outputReceipt.Text = "                      Online Barber Shop";
 
-
             //random order number output text
             outputReceipt.Text += $"\n\nOrder Number: {randomNum}";
-
 
             //date and time output text
             outputReceipt.Text += $"\n\nOrder Day:                 {day}";
@@ -229,7 +189,6 @@ namespace Cashregister
             outputReceipt.Text += $"\nOrder Time:               {time}";
             Thread.Sleep(500);
             Refresh();
-
 
             //iteams purchase and item prices output ext
             outputReceipt.Text += $"\n\nBald fade    x{baldFadeAmount}        @ {baldFadeCost.ToString("c")}";
@@ -242,7 +201,6 @@ namespace Cashregister
             Thread.Sleep(500);
             Refresh();
 
-
             //tax and total output text 
             outputReceipt.Text += $"\n\nSubtotal                       {subTotal.ToString("c")}";
             Thread.Sleep(500);
@@ -254,7 +212,6 @@ namespace Cashregister
             Thread.Sleep(500);
             Refresh();
 
-
             //payed amount and change output text
             outputReceipt.Text += $"\n\nTendered                    {amountPayed.ToString("c")}";
             Thread.Sleep(500);
@@ -263,7 +220,6 @@ namespace Cashregister
             Thread.Sleep(500);
             Refresh();
 
-
             //thank you message 
             outputReceipt.Text += "\n\n Thank you for coming to the Online Barber Shop!!!";
             Thread.Sleep(500);
@@ -271,13 +227,9 @@ namespace Cashregister
         }
 
 
-
-
         //Reset screen
         private void button1_Click(object sender, EventArgs e)
         {
-
-
             SoundPlayer paperRip = new SoundPlayer(Properties.Resources.paperRipSound);
             paperRip.Play();
 
